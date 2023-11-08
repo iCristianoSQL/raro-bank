@@ -1,0 +1,40 @@
+[
+    {
+      "name": "Precatórios Estaduais",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://i.ibb.co/C0cf6PL/precatorio-estadual.png",
+      "additional_fee": 10.0
+    },
+    {
+      "name": "Recebíveis Judiciais",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://i.ibb.co/LPGykQQ/recebiveis-judiciais.png",
+      "additional_fee": 8.0,
+      "premium": true
+    },
+    {
+      "name": "Precatórios Federais",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://i.ibb.co/Dr0mj27/precatorio-federal.png",
+      "additional_fee": 6.0
+    },
+    {
+      "name": "Cotas de Consórcios",
+      "minimum_investment_amount": 10.00,
+      "image_url": "https://i.ibb.co/195Hvyj/cotas-de-consorcio.png",
+      "additional_fee": 4.0
+    },
+    {
+      "name": "WillCrypto",
+      "minimum_investment_amount": 15.00,
+      "image_url": "https://i.ibb.co/f8JHYTF/coins.png",
+      "additional_fee": 2.0,
+      "premium": true
+    },
+    {
+      "name": "AndradeCoin",
+      "minimum_investment_amount": 15.00,
+      "image_url": "https://i.ibb.co/f8JHYTF/coins.png",
+      "additional_fee": 9.0
+    }
+  ]

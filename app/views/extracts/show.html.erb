@@ -1,0 +1,49 @@
+<head>
+  <title>Extrato</title>
+</head>
+<body>
+  <div class="title-row">
+    <h2>Extrato</h2>
+  </div>
+
+  <div class="table-container mx-6">
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Destinatário/Remetente</th>
+          <th>Data e Hora</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% (@sent_transfers + @received_transfers + @user.sent_transfers + @investments).sort_by(&:created_at).reverse.each do |entry| %>
+          <% if entry.is_a?(Transfer) %>
+            <% if entry.sender == current_user %>
+              <tr>
+                <td>Enviada</td>
+                <td><%= entry.receiver.name %></td>
+                <td><%= entry.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+                <td class="negative-value">- P$ <%= number_to_currency(entry.amount, unit: '', precision: 2) %></td>
+              </tr>
+            <% else %>
+              <tr>
+                <td>Recebida</td>
+                <td><%= entry.sender.name %></td>
+                <td><%= entry.created_at.strftime('%d/%m/%Y %H:%M:%S') %></td>
+                <td class="positive-value">+ P$ <%= number_to_currency(entry.amount, unit: '', precision: 2) %></td>
+              </tr>
+            <% end %>
+          <% elsif entry.is_a?(Investment) %>
+            <tr>
+              <td>Investimento</td>
+              <td><%= entry.product.name %></td>
+              <td><%= entry.investment_date.strftime('%d/%m/%Y %H:%M:%S') %></td>
+              <td class="negative-value">- P$ <%= number_to_currency(entry.invested_amount, unit: '', precision: 2) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</body>

@@ -1,0 +1,23 @@
+<div class="text-left mt-10 mb-0">
+  <h2 style="color: #DA1B6E; margin-bottom: 40px; font-size: 36px; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); margin-left: 65px;">
+    Adicionar Usuário à Turma
+  </h2>
+
+  <%= form_with(url: add_user_to_classroom_administrators_path, method: :post, class: "ml-10") do |f| %>
+
+
+    <div class="flex mb-4">
+      <div class="mr-2">
+        <%= f.label :user_id, "Usuário", style: "color: black; display: block; margin-bottom: 5px;" %>
+        <%= f.collection_select :user_id, @users, :id, :name, { prompt: "Selecione um usuário" }, style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: black; margin-bottom: 10px;", selected: nil %>
+      </div>
+
+      <div class="ml-2">
+        <%= f.label :classroom_id, "Turma", style: "color: black; display: block; margin-bottom: 5px;" %>
+        <%= f.collection_select :classroom_id, @classrooms, :id, :name, { prompt: "Selecione uma turma" }, style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: black; margin-bottom: 10px;", selected: nil %>
+      </div>
+    </div>
+
+    <%= f.button "Adicionar", class: "bg-pink-500 text-white py-2 px-4 rounded-md shadow-md ml-10 hover:bg-pink-600" %>
+  <% end %>
+</div>

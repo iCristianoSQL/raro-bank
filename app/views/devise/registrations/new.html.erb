@@ -1,0 +1,15 @@
+  <strong class='mx-auto'>Cadastre-se</strong>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "mt-2 space-y-6" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="-space-y-px rounded-md shadow-sm flex flex-col gap-4">
+      <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50" %>
+      <%= f.text_field :name, placeholder: "Nome", autofocus: true, autocomplete: "name", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50" %>
+      <%= f.text_field :cpf, placeholder: "CPF", autofocus: true, autocomplete: "cpf", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50" %>
+      <%= f.password_field :password, placeholder: "Senha", autocomplete: "new-password", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirmar Senha", autocomplete: "new-password", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50" %>
+      <%= f.submit "INSCREVA-SE", class: "text-center transition duration-500 hover:brightness-125 font-semibold py-[0.8rem] rounded-lg px-0 w-full bg-[#DA1B6E]" %>
+      <div class='flex justify-between'>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  <% end %>

@@ -1,0 +1,33 @@
+<div class='w-full h-full flex'>
+        <aside class='justify-between min-h-screen w-[30vw] p-8 py-6 h-fit flex flex-col bg-[#FF4398]'>
+            <nav class='flex items-center gap-4 justify-between'>
+                <%= image_tag "https://i.ibb.co/b6wS491/raro-bank-logo.png", class: 'w-36' %>
+                <div class='flex gap-2 items-center'>
+                    <div class='bg-white w-fit p-[0.5rem] rounded-full text-[#DA1B6E] font-bold'><%= current_user.name.split.first[0] %><%= current_user.name.split.last[0] %></div>
+                    <%= render 'shared/icons', additional_classes: "cursor-pointer", path_d: "M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" %>
+
+                    <div class='flex cursor-pointer'>
+                        <%= render 'shared/icons', additional_classes: "transform rotate-90" , path_d: "M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" %>
+                        <%= button_to "Sair", destroy_user_session_path, method: :delete, data: { turbo_frame: "user-menu" }  %>
+                    </div>
+                </div>
+            </nav>
+            <div class='flex flex-col gap-6'>
+                <%= render 'shared/cardsinfo', info: 'VALOR ATUAL:', value: number_to_currency(@balance&.current_balance), show_icon: true %>
+                <%= render 'shared/cardsinfo', info: 'VALOR DEPOSITADO:', value: number_to_currency(@balance&.balance_deposited), show_icon: false %>
+                <%= render 'shared/cardsinfo', info: 'VALOR RETIRADO:', value: number_to_currency(@balance&.withdrawn), show_icon: false %>
+                <%= render 'shared/cardsinfo', info: 'TAXA SELIC a.a:', value: "2", show_icon: false %>
+            </div>
+                <%= render 'shared/components/button', styles: 'bg-[#DA1B6E]' do %>
+                  <%= turbo_frame_tag 'transfer-link' do %>
+                    <%= link_to "TRANSFERÊNCIA", new_transfer_path, class: "bg-[#DA1B6E] text-white font-bold py-2 px-4 rounded", data: { turbo_frame: 'transfer-link' } %>
+                  <% end %>
+                <% end %>
+        </aside>
+        <div class='w-[70vw] min-h-screen h-fit px-2 flex flex-col'>
+            <%= render 'shared/header' %>
+            <div class='h-[90vh] overflow-y-auto max-h-[90vh] p-8'>
+                <%= yield %>
+            <div>
+        </div>
+</div>

@@ -1,0 +1,42 @@
+<div style="text-align: left; margin-top: 20px; margin-bottom: 0px;">
+  <h1 style="color: #DA1B6E; margin-top: 20px; margin-bottom: 40px; font-size: 36px; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); margin-left: 65px;">
+    Adicionar saldo
+  </h1>
+
+  <div style="display: flex; justify-content: space-between; margin-left: 65px;">
+      <%= render 'shared/flash_messages' %>
+    <div style=" margin-right: 20px;">
+      <%= form_with(url: deposit_administrators_path, method: :post) do |f| %>
+        <div style="display: flex; justify-content: flex-start;">
+          <div style="text-align: left;">
+            <h3 style="color: #DA1B6E; margin-bottom: 10px; margin-left: 65px; font-size: 24px;">Usuário</h3>
+            <%= f.collection_select :user_id, @users, :id, :name, { prompt: "Selecione um usuário" }, { style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: #999; margin-bottom: 20px;"  } %>
+            <% f.label :amount, "Valor de depósito", style: "color: #DA1B6E; font-weight: bold;" %>
+            <%= f.number_field :amount, step: 0.01, placeholder: "Valor do Depósito", style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: black; margin-bottom: 20px;" %>
+            <%= render 'shared/components/button', styles: 'bg-[#DA1B6E] py-2 px-2' do %>
+              <%= f.submit "Depositar" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div style="width: 2px; background-color: #DA1B6E;"></div>
+
+    <div style=" margin-left: 20px;">
+      <%= form_with(url: deposit_all_administrators_path, method: :post) do |f| %>
+        <div style="display: flex; justify-content: flex-start;">
+          <div style="text-align: left; margin-left: 65px;">
+            <h3 style="color: #DA1B6E; margin-bottom: 10px; font-size: 24px;">Turma</h3>
+            <%= f.collection_select :classroom_id, @classrooms, :id, :name, { prompt: "Selecione uma turma" }, { style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: #999; margin-bottom: 20px;" } %>
+            <% f.label :amount, "Valor de depósito para todos os alunos da turma", style: "color: #999; font-weight: bold;" %>
+            <%= f.number_field :amount, step: 0.01, placeholder: "Valor do Depósito", style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: #999; margin-bottom: 20px;" %>
+            <%= render 'shared/components/button', styles: 'bg-[#DA1B6E] py-2 px-2' do %>
+              <%= f.submit "Depositar para todos" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

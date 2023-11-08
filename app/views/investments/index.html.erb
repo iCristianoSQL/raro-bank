@@ -1,0 +1,57 @@
+<section class='flex flex-col gap-2'>
+  <% if current_user.investments.any? %>
+    <% current_user.investments.sort_by(&:invested_amount).reverse.each do |investment| %>
+      <% if investment.user_id == current_user.id %>
+        <div class='bg-[#640F46] relative flex items-center px-4 py-6 rounded-[0.5rem] justify-between'>
+        <% if investment.redeemed %>
+        <% else %>
+          <%= link_to investment_path(investment), method: :delete, data: { confirm: 'Tem certeza que deseja excluir o investimento?' } do %>
+            <%= image_tag('https://i.ibb.co/JsCnZ8z/vender-investimento.png', class: 'w-[2rem] right-[10px] bottom-[5px] absolute cursor-pointer', alt: 'Sell Image') %>
+          <% end %>
+        <% end %>
+          <img src='<%= investment.product.image_url %>' class='w-20' alt='Image Product'>
+          <% if investment.product.premium? %>
+            <img src="https://i.ibb.co/Wpr4kDx/selo.png" alt="Product Image" class='top-[-10px] right-[-15px] w-[2.5rem] absolute'>
+          <% end %>
+          <div class='text-sm'>
+            <p class='text-center'>Produto</p>
+            <%= investment.product.name %>
+          </div>
+          <div class='text-sm text-center'>
+            <p>Valor investido</p>
+            R$<%= investment.invested_amount %>
+          </div>
+          <div class='text-sm text-center'>
+            <p>Dia do investimento</p>
+            <%= investment.investment_date.strftime("%d/%m/%Y") %>
+          </div>
+          <div class='text-sm text-center'>
+            <p>Fim do investimento</p>
+            <%= investment.product.end_of_term.strftime("%d/%m/%Y") %>
+          </div>
+          <div class='text-sm text-center'>
+            <p>Taxa a.a</p>
+            <div class='flex flex-col'>
+              <%= (investment.product.additional_fee + investment.product.fee.value * 365).round(2) %>%
+              <%= investment.product.fee.name %> + <%= investment.product.additional_fee %>
+            </div>
+          </div>
+          <div class='text-sm text-center'>
+            <% if investment.redeemed %>
+              <div class='w-[1rem] h-[1rem] bg-gray-600 rounded-full active-anim'></div>
+            <% else %>
+              <div class='w-[1rem] h-[1rem] bg-green-600 rounded-full active-anim'></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class='flex flex-col items-center'>
+      <h1 class='text-black !important text-[2.5rem]'>Você ainda não investiu. ;/</h1>
+      <video width="256" height="256" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/7994/7994388.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="">
+        <source src="https://cdn-icons-mp4.flaticon.com/512/7994/7994388.mp4" type="video/mp4">
+      </video>
+    </div>
+  <% end %>
+</section>

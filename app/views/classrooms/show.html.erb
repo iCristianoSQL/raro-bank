@@ -1,0 +1,32 @@
+<h1 class="text-left mt-20 mb-0" style="color: #DA1B6E; margin-top: 20px; margin-bottom: 40px; font-size: 36px; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); margin-left: 65px;">
+  Turma: <%= @classroom.name %>
+</h1>
+
+<h2 class="text-left mt-4 mb-2 ml-10" style="font-size: 24px; font-family: 'Arial', sans-serif;">
+  Alunos
+</h2>
+
+<% if @classroom.users.any? %>
+  <table class="table-container mx-6 mb-30">
+    <thead>
+      <tr>
+        <th>Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @classroom.users.each do |user| %>
+        <tr>
+          <td class="text-black"><%= user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="text-black ml-10">Não há alunos nesta turma.</p>
+<% end %>
+
+<div class="flex ml-10 mt-4">
+  <%= link_to "Editar", edit_classroom_path(@classroom), class: "bg-pink-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-pink-600 mr-2" %>
+  <%= link_to "Adicionar aluno à turma", classroom_management_path, class: "bg-pink-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-pink-600 mr-2" %>
+  <%= link_to "Voltar para Lista de Turmas", classrooms_path, class: "bg-pink-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-pink-600" %>
+</div>

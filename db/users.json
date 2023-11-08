@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Cristiano dos Santos",
+        "cpf": "68924488015",
+        "email": "cristiano@rarobank.com.br",
+        "password": "rarobank",
+        "password_confirmation": "rarobank"
+    },
+    {
+        "name": "Rayssa Guilherme",
+        "cpf": "12712000072",
+        "email": "rayssa@rarobank.com.br",
+        "password": "rarobank",
+        "password_confirmation": "rarobank"
+    },
+    {
+        "name": "Danilo Laet",
+        "cpf": "40715744020",
+        "email": "danilo@rarobank.com.br",
+        "password": "rarobank",
+        "password_confirmation": "rarobank"
+    },
+    {
+        "name": "Humberto Ferro",
+        "cpf": "96601468096",
+        "email": "humberto@rarobank.com.br",
+        "password": "rarobank",
+        "password_confirmation": "rarobank"
+    },
+    {
+        "name": "Paulo Fernandes",
+        "cpf": "65817973081",
+        "email": "paulo@rarobank.com.br",
+        "password": "rarobank",
+        "password_confirmation": "rarobank"
+    },
+    {
+        "name": "Guilherme Andrade",
+        "cpf": "01155595076",
+        "email": "guilherme@rarobank.com.br",
+        "password": "rarobank",
+        "password_confirmation": "rarobank"
+    }
+]

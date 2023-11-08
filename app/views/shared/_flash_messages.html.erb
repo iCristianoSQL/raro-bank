@@ -1,0 +1,6 @@
+<% flash.each do |key, message| %>
+  <div class="alert <%= flash_class(key) %>">
+    <%= message %>
+    <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+<% end %>

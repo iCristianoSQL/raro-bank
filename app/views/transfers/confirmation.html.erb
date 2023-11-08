@@ -1,0 +1,68 @@
+<div style="text-align: left; margin: 0 auto; width: 500px;">
+  <% if @transfer.present? %>
+    <% if @transfer.token_expired? %>
+      <script>
+        alert('Token expirado!');
+        window.location.href = '<%= new_transfer_path %>';
+      </script>
+    <% else %>
+      <h1>Confirmação de Transferência</h1>
+      <%= render 'shared/flash_messages' %>
+
+      <div style="text-align: left; margin: 0 auto; width: 500px;">
+        <h1 style="color: black; margin-bottom: 20px; font-size: 24px;">
+          <%= @message %>
+        </h1>
+
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0 10px;">
+          <% if @transfer.sender %>
+            <tr>
+              <td style="border-radius: 5px; background-color: #DA1B6E; padding: 10px;">
+                <h4 style="color: white; margin-bottom: 5px; font-size: 16px;">Remetente:</h4>
+                <p style="color: white;"><%= @transfer.sender.name %></p>
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td style="border-radius: 5px; background-color: #DA1B6E; padding: 10px;">
+              <h4 style="color: white; margin-bottom: 5px; font-size: 16px;">Destinatário:</h4>
+              <p style="color: white;"><%= @transfer.receiver.name %></p>
+            </td>
+          </tr>
+          <tr>
+            <td style="border-radius: 5px; background-color: #DA1B6E; padding: 10px;">
+              <h4 style="color: white; margin-bottom: 5px; font-size: 16px;">Valor:</h4>
+              <p style="color: white;"><%= number_to_currency(@transfer.amount) %></p>
+            </td>
+          </tr>
+        </table>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <%= link_to "Voltar para a lista de transferências", new_transfer_path, style: "color: #DA1B6E; font-size: 16px; text-decoration: none; display: inline-block; padding: 8px 16px; border-radius: 5px; background-color: #EEE; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);" %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h1>Confirmação de Transferência</h1>
+    <%= render 'shared/flash_messages' %>
+
+    <div style="text-align: left; margin: 0 auto; width: 500px;">
+      <h1 style="color: black; margin-bottom: 20px; font-size: 24px;">
+        <%= @message %>
+      </h1>
+
+      <table style="width: 100%; border-collapse: separate; border-spacing: 0 10px;">
+        <tr>
+          <td style="border-radius: 5px; background-color: #DA1B6E; padding: 10px;">
+            <h4 style="color: white; margin-bottom: 5px; font-size: 16px;">Token:</h4>
+            <p class="error-message"><%= @message %></p>
+          </td>
+        </tr>
+      </table>
+
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="<%= request.referrer || new_transfer_path %>" style="color: #DA1B6E; font-size: 16px; text-decoration: none; display: inline-block; padding: 8px 16px; border-radius: 5px; background-color: #EEE; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Tentar Novamente</a>
+      </div>
+    </div>
+  <% end %>
+</div>

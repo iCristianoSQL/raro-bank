@@ -1,0 +1,56 @@
+<div style="text-align: left; margin-top: 20px; margin-bottom: 0px;">
+  <h1 style="color: #DA1B6E; margin-top: 20px; margin-bottom: 40px; font-size: 36px; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); margin-left: 65px;">
+    Nova Transferência
+  </h1>
+
+  <%= form_with(model: @transfer, url: transfers_path) do |form| %>
+
+    <div style="display: flex; justify-content: flex-start;">
+      <% if @contacts.present? %>
+          <div style="text-align: left; margin-right: 20px;">
+            <h3 style="color: #DA1B6E; margin-bottom: 10px; margin-left: 65px; font-size: 24px;">Meus contatos</h3>
+            <%= form.label :my_contact_cpf, "Contato" %>
+            <%= form.collection_select :my_contact_cpf, @contacts, :cpf, :name, { prompt: "Selecione um contato" }, { style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: #999; margin-bottom: 20px;" } %>
+          </div>
+      <% end %>
+    </div>
+
+    <div style="text-align: left; margin-left: 65px;">
+      <hr style="border: none; border-top: 2px solid #DA1B6E; margin-bottom: 10px; margin-right: 60px;">
+      <h3 style="color: #DA1B6E; margin-bottom: 10px; font-size: 24px;">Novo contato</h3>
+      <div style="display: flex; margin-bottom: 10px;">
+        <div style="margin-right: 10px;">
+          <h4 style="color: black; margin-bottom: 5px; font-size: 16px;">CPF do Destinatário</h4>
+          <%= form.text_field :new_contact_cpf, placeholder: "CPF do destinatário", style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: black;" %>
+          <% if @transfer.errors[:receiver_cpf].any? %>
+            <div style="color: red; margin-left: 65px;">
+              <% @transfer.errors[:receiver_cpf].each do |error| %>
+                <p><%= error %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+    <div style="text-align: left; margin-left: 65px;">
+      <hr style="border: none; border-top: 2px solid #DA1B6E; margin-bottom: 20px; margin-right: 60px;">
+      <%= form.label :amount, "Valor da Transferência", style: "color: black; display: block; margin-bottom: 5px;" %>
+      <%= form.number_field :amount, step: 0.01, placeholder: "Paulo$", style: "border-radius: 5px; box-shadow: 2px 2px 5px hotpink; color: black; margin-bottom: 10px;" %>
+      <% if @transfer.errors[:amount].any? %>
+        <div style="color: red; margin-left: 65px;">
+          <% @transfer.errors[:amount].each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div style="text-align: right; margin-top: 20px; margin-right: 60px;">
+      <%= render 'shared/components/button', styles: 'bg-[#DA1B6E] py-2 px-4' do %>
+        <%= form.submit "Iniciar Transferência" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

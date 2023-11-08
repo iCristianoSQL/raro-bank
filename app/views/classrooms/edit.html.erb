@@ -1,0 +1,16 @@
+<h1 class="text-left mt-20 mb-0" style="color: #DA1B6E; margin-top: 20px; margin-bottom: 40px; font-size: 36px; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); margin-left: 65px;">
+  Editar Turma
+</h1>
+
+<%= form_with(model: @classroom, url: classroom_path(@classroom), method: :patch, class: "ml-10") do |f| %>
+  <div class="mb-4">
+    <%= f.label :name, "Nome", style: "color: black; display: block; margin-bottom: 5px;" %>
+    <%= f.text_field :name, class: "rounded-md shadow-md text-black" %>
+  </div>
+
+  <div class="flex">
+    <%= f.submit "Atualizar", class: "bg-pink-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-pink-600 mr-2" %>
+    <%= link_to "Voltar para Turma", classroom_path(@classroom), class: "bg-pink-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-pink-600 mr-2" %>
+    <%= link_to "Voltar para a lista de turmas", classrooms_path, class: "bg-pink-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-pink-600" %>
+  </div>
+<% end %>

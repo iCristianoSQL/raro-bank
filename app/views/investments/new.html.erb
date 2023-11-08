@@ -1,0 +1,37 @@
+
+<%= form_with(model: @investment, url: investments_path, method: :post) do |form| %>
+  <% p_value = params[:p] %>
+  <% s_value = params[:s] %>
+<section class='flex flex-col'>
+  <h1 class='text-black !important text-[2.5rem]'>INVISTA JÁ</h1>
+  <div class='flex flex-col items-center'>
+    <% if p_value.present? && s_value.present? %>
+      <% product = Product.find(s_value) %>
+      <% if product.present? && product.image_url.present? %>
+        <img src="<%= product.image_url %>" alt="Product Image" class="w-[12.125rem]">
+      <% end %>
+      <% if product.present? && product.name.present? %>
+        <strong class='text-lg text-[#ff4398] font-bold mt-2'><%= product.name %></strong>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div class='flex justify-between mt-[1rem]'>
+    <div class='flex flex-col w-[48%]'>
+        <%= form.label :invested_amount, "Valor", class: 'text-black font-bold' %>
+        <%= form.number_field :invested_amount, step: '0.01', class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50'%>
+    </div>
+
+    <div class='flex flex-col w-[48%]'>
+        <%= form.label :product_id, "Produto", class: 'text-black font-bold' %>
+        <%= form.collection_select :product_id, Product.all, :id, :name, { selected: s_value.to_i }, class: 'pointer-events-none' %>
+    </div>
+  </div>
+
+  <div>
+    <%= render 'shared/components/button', styles: 'bg-[#DA1B6E] w-[90%] mt-[2.5rem] cursor-pointer' do %>
+        <%= form.submit 'COMPRAR' %>
+    <% end %>
+  </div>
+</section>
+<% end %>

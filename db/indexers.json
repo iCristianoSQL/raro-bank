@@ -1,0 +1,17 @@
+{
+    "indexers": [
+      {
+        "name": "CDI",
+        "method": "get_cdi_rate"
+      },
+      {
+        "name": "SELIC",
+        "method": "get_selic_rate"
+      },
+      {
+        "name": "IPCA",
+        "method": "get_ipca_rate"
+      }
+    ]
+  }
+  

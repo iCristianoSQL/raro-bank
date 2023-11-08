@@ -1,0 +1,59 @@
+<section class='flex items-center justify-center'>
+    <%= form_with(model: @product, url: products_path, local: true) do |form| %>
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+        <ul>
+            <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        </div>
+    <% end %>
+        <div class="flex flex-col">
+            <%= form.label :name, "Nome", class: 'text-black' %>
+            <%= form.text_field :name, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :start_date,  "Data início", class: 'text-black' %>
+            <%= form.date_field :start_date, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>    
+
+        <div class="flex flex-col">
+            <%= form.label :end_of_term, "Data término", class: 'text-black' %>
+            <%= form.date_field :end_of_term, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :minimum_investment_amount, "Valor minimo de investimento", class: 'text-black' %>
+            <%= form.number_field :minimum_investment_amount, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+        <%= form.label :image_url, "URL da imagem", class: 'text-black' %>
+        <%= form.text_field :image_url, value: 'https://i.ibb.co/C0cf6PL/precatorio-estadual.png', class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :additional_fee, "Taxa adicional", class: 'text-black' %>
+            <%= form.number_field :additional_fee, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+
+
+    <div class='flex items-center gap-8'>
+        <div class="flex flex-col">
+            <%= form.label :premium, class: 'text-black' %>
+            <%= form.check_box :premium, class: 'form-checkbox h-5 w-5 text-[#DA1B6E]' %>
+        </div>
+
+        <div class="flex flex-col">
+            <%= form.label :fee_id, "Taxa", class: 'text-black' %>
+            <%= form.collection_select :fee_id, Fee.all, :id, :name, prompt: true, class: 'w-full p-[0.8rem] rounded-xl bg-[#DA1B6E] text-white placeholder-white placeholder-opacity-50' %>
+        </div>
+    </div>
+    <%= render 'shared/components/button', styles: 'mt-[0.5rem] w-full bg-[#DA1B6E]' do %>
+        <%= form.submit %>
+        <% end %>
+    <% end %>
+</section>

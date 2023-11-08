@@ -1,0 +1,50 @@
+<section class='flex flex-col gap-2'>
+  <% if @investment %>
+    <div class='bg-[#640F46] relative flex items-center px-4 py-6 rounded-[0.5rem] justify-between'>
+      <img src='<%= @investment.product.image_url %>' class='w-20' alt='Image Product'>
+      <div class='text-sm'>
+        <p class='text-center'>Produto</p>
+        <%= @investment.product.name %>
+      </div>
+      <div class='text-sm text-center'>
+        <p>Valor investido</p>
+        R$<%= @investment.invested_amount %>
+      </div>
+      <div class='text-sm text-center'>
+        <p>Dia do investimento</p>
+        <%= @investment.investment_date.strftime("%d/%m/%Y") %>
+      </div>
+      <div class='text-sm text-center'>
+        <p>Fim do investimento</p>
+        <%= @investment.product.end_of_term.strftime("%d/%m/%Y") %>
+      </div>
+      <div class='text-sm text-center'>
+        <p>Taxa a.a</p>
+        <div class='flex flex-col'>
+          <%= (@investment.product.additional_fee + @investment.product.fee.value * 365).round(2) %>%
+          <%= @investment.product.fee.name %> + <%= @investment.product.additional_fee %>
+        </div>
+      </div>
+      <div class='text-sm text-center'>
+        <% if @investment.redeemed %>
+          <div class='w-[1rem] h-[1rem] bg-gray-600 rounded-full active-anim'></div>
+        <% else %>
+          <div class='w-[1rem] h-[1rem] bg-green-600 rounded-full active-anim'></div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class='flex flex-col items-center'>
+      <h1 class='text-black !important text-[2.5rem]'>Você ainda não investiu. ;/</h1>
+      <video width="256" height="256" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/7994/7994388.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="">
+        <source src="https://cdn-icons-mp4.flaticon.com/512/7994/7994388.mp4" type="video/mp4">
+      </video>
+    </div>
+  <% end %>
+</section>
+<div class='flex justify-center mt-[2rem] items-center'>
+    <%= button_to investment_path(@investment), method: :delete, data: { confirm: 'Tem certeza que deseja excluir o investimento?' }, class: 'text-black font-bold flex flex-col items-center' do %>
+        <img src='https://i.ibb.co/JsCnZ8z/vender-investimento.png', class='w-[5rem] right-[10px] bottom-[5px] cursor-pointer', alt='Sell Image'>
+        CONFIRMAR SAQUE
+    <% end %>
+</div>

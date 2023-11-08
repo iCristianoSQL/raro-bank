@@ -1,0 +1,28 @@
+<strong class='mx-auto'>Faça Login ou Crie sua conta</strong>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mt-2 space-y-6" }) do |f| %>
+  <div class="-space-y-px rounded-md shadow-sm flex flex-col gap-4">
+      <%= f.email_field :email, autofocus: true, class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50", placeholder: "Email" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50", placeholder: "Senha" %>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <label class="control control-checkbox">
+        <%= f.check_box :remember_me, class: 'h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600' %>
+        <div class="control_indicator"></div>
+        <%= f.label :remember_me, class: 'block text-sm text-white' %>
+      </label>
+    </div>
+
+    <div class="text-sm">
+      <%= link_to "ESQUECEU SUA SENHA?", new_user_password_path, class: "text-white font-semibold nimate-duration-500	border-b border-transparent hover:border-white" %>
+    </div>
+    </div>
+
+    <div class="flex justify-between">
+      <%= render 'shared/components/button', styles: 'w-[48%] bg-[#DA1B6E]' do %>
+          ENTRAR
+      <% end %>
+      <%= link_to "CRIE SUA CONTA", new_user_registration_path, class: "text-center transition duration-500 hover:brightness-125 font-semibold py-[0.8rem] rounded-lg px-0 w-[48%] bg-[#DA1B6E]" %>
+    </div>
+<% end %>

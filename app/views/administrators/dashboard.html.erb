@@ -1,0 +1,25 @@
+<div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+  <h1 style="color: #DA1B6E; margin-bottom: 20px; font-size: 36px; font-family: 'Arial', sans-serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">Painel Administrativo</h1>
+
+  <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+    <div>
+      <h3 style="color: #DA1B6E; margin-bottom: 10px; font-size: 24px;">Classes</h3>
+      <%= link_to "Ver todas as salas de aula", classrooms_path, style: "color: #999; text-decoration: none;" %>
+    </div>
+
+    <div style="width: 2px; height: 30px; background-color: #DA1B6E;"></div>
+
+    <div>
+      <h3 style="color: #DA1B6E; margin-bottom: 10px; font-size: 24px;">Saldo</h3>
+      <%= link_to "Adicionar saldo", administrators_path, style: "color: #999; text-decoration: none;" %>
+    </div>
+
+    <div style="width: 2px; height: 30px; background-color: #DA1B6E;"></div>
+
+    <div>
+      <h3 style="color: #DA1B6E; margin-bottom: 10px; font-size: 24px;">Produtos</h3>
+      <%= link_to "Criar Produto", new_product_path, style: "color: #999; text-decoration: none;" %>
+    </div>
+
+  </div>
+</div>

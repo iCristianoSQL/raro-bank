@@ -1,0 +1,9 @@
+<strong class='mx-auto'>Confirmação</strong>
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "mt-2 space-y-6" }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.email_field :email, autofocus: true, placeholder: 'Email', autocomplete: "email", class: "w-full p-[0.8rem] rounded-xl bg-[#640F46] text-white placeholder-white placeholder-opacity-50", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+  <%= f.submit "REENVIAR CONFIRMAÇÃO", class: "text-center transition duration-500 hover:brightness-125 font-semibold py-[0.8rem] rounded-lg px-0 w-full bg-[#DA1B6E]" %>
+  <div class='flex justify-between'>
+    <%= render "devise/shared/links" %>
+  </div>
+<% end %>
